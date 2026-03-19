@@ -3,7 +3,9 @@ import mongoose from "mongoose";
 const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
-  throw new Error("Vui lòng định nghĩa MONGODB_URI trong file .env.local");
+  throw new Error(
+    "MONGODB_URI chưa được cấu hình. Vercel: thêm biến môi trường MONGODB_URI ở Dashboard, local: .env.local"
+  );
 }
 
 let cached = (global as any).mongoose;

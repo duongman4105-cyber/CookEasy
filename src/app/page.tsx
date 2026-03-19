@@ -1,4 +1,6 @@
-﻿import RecipeCard from "@/components/RecipeCard";
+﻿export const dynamic = "force-dynamic";
+
+import RecipeCard from "@/components/RecipeCard";
 import AllRecipes from "@/components/AllRecipes";
 import AIAssistant from "@/components/AIAssistant";
 import connectToDatabase from "@/lib/mongodb";
