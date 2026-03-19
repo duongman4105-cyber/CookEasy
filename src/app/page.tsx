@@ -42,11 +42,12 @@ async function getDailyRecipes() {
   const selectedRecipes = shuffled.slice(0, 6);
   const selectedIds = selectedRecipes.map((r: any) => r._id);
 
-  // 4. Lưu kết quả random vào db giữ nguyên trong 24H ngày hôm nay 
-  await DailyMenuModel.create({
-    dateString: todayStr,
-    recipes: selectedIds
-  });
+  // 4. Lưu hoặc cập nhật kết quả random vào db để tránh duplicate key khi cùng ngày
+  await DailyMenuModel.findOneAndUpdate(
+    { dateString: todayStr },
+    { $set: { recipes: selectedIds } },
+    { upsert: true, new: true }
+  );
 
   return selectedRecipes;
 }
